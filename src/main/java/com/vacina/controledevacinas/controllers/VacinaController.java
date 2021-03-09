@@ -26,8 +26,9 @@ public class VacinaController {
     public ResponseEntity<?> cadastroPessoa(@RequestBody @Valid VacinaDTO request, UriComponentsBuilder builder) {
         Vacina vacina = request.toEntity();
         vacinaRepository.save(vacina);
-        URI uri = builder.path("/pessoa/{id}").buildAndExpand(vacina.getId()).toUri();
+        URI uri = builder.path("/vacina/{id}").buildAndExpand(vacina.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
 
 }
