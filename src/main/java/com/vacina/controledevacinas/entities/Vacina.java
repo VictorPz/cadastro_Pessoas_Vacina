@@ -1,12 +1,10 @@
 package com.vacina.controledevacinas.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.vacina.controledevacinas.dtos.VacinaResponseDTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+
 
 @Entity
 public class Vacina {
@@ -18,13 +16,21 @@ public class Vacina {
     private String emailPessoa;
     private LocalDate date = LocalDate.now();
 
+    @ManyToOne
+    Pessoa pessoa;
+
     @Deprecated
     public Vacina() {
     }
 
-    public Vacina(String nomeVacina, String emailPessoa) {
+    public Vacina(String nomeVacina, String emailPessoa, Pessoa pessoas) {
         this.nomeVacina = nomeVacina;
         this.emailPessoa = emailPessoa;
+        this.pessoa = pessoas;
+    }
+
+    public VacinaResponseDTO toResponse(){
+        return new VacinaResponseDTO(nomeVacina, emailPessoa);
     }
 
     public Long getId() {

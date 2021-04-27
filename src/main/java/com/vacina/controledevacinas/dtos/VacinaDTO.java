@@ -1,22 +1,25 @@
 package com.vacina.controledevacinas.dtos;
 
 import com.vacina.controledevacinas.common.UniqueValue;
+import com.vacina.controledevacinas.entities.Pessoa;
 import com.vacina.controledevacinas.entities.Vacina;
+import com.vacina.controledevacinas.repositories.PessoaRepository;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class VacinaDTO {
 
     @NotBlank
     private String nomeVacina;
-    @UniqueValue(domainClass = Vacina.class, fieldName = "emailPessoa")
-    @NotBlank
-    @Email
     private String emailPessoa;
+    @NotNull
+    private Long pessoaId;
 
-    public Vacina toEntity() {
-        return new Vacina(this.nomeVacina, this.emailPessoa);
+    public Vacina toEntity(PessoaRepository pessoaRepository) {
+        Pessoa pessoa = pessoaRepository.findById(pessoaId).get();
+        return new Vacina(this.nomeVacina, this.emailPessoa, pessoa);
     }
 
     public String getNomeVacina() {
@@ -33,5 +36,13 @@ public class VacinaDTO {
 
     public void setEmailPessoa(String emailPessoa) {
         this.emailPessoa = emailPessoa;
+    }
+
+    public Long getPessoaId(){
+        return pessoaId;
+    }
+
+    public void setPessoaId(Long pessoaId) {
+        this.pessoaId = pessoaId;
     }
 }

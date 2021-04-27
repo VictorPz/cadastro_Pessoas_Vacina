@@ -2,6 +2,7 @@ package com.vacina.controledevacinas.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Pessoa {
@@ -15,6 +16,10 @@ public class Pessoa {
     private String cpf;
     private String estado;
     private String cidade;
+
+    @OneToMany(mappedBy = "pessoa")
+    List<Vacina> vacinas;
+
 
     @Deprecated
     public Pessoa() {

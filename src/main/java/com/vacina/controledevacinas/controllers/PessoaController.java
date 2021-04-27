@@ -21,10 +21,11 @@ public class PessoaController {
     private PessoaRepository pessoaRepository;
 
     @PostMapping("/cadastro")
-    public ResponseEntity<?> cadastroPessoa(@RequestBody @Valid PessoaDTO request, UriComponentsBuilder builder) {
+        public ResponseEntity<?> cadastroPessoa (@RequestBody @Valid PessoaDTO request, UriComponentsBuilder builder){
         Pessoa pessoa = request.toEntity();
         pessoaRepository.save(pessoa);
         URI uri = builder.path("/pessoa/{id}").buildAndExpand(pessoa.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
 }
