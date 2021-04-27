@@ -8,6 +8,7 @@ import com.vacina.controledevacinas.repositories.PessoaRepository;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 public class VacinaDTO {
 
@@ -16,10 +17,11 @@ public class VacinaDTO {
     private String emailPessoa;
     @NotNull
     private Long pessoaId;
+    private LocalDate date = LocalDate.now();
 
     public Vacina toEntity(PessoaRepository pessoaRepository) {
         Pessoa pessoa = pessoaRepository.findById(pessoaId).get();
-        return new Vacina(this.nomeVacina, this.emailPessoa, pessoa);
+        return new Vacina(this.nomeVacina, this.emailPessoa, pessoa, date);
     }
 
     public String getNomeVacina() {

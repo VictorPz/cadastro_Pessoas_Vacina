@@ -23,14 +23,15 @@ public class Vacina {
     public Vacina() {
     }
 
-    public Vacina(String nomeVacina, String emailPessoa, Pessoa pessoas) {
+    public Vacina(String nomeVacina, String emailPessoa, Pessoa pessoas, LocalDate date) {
         this.nomeVacina = nomeVacina;
         this.emailPessoa = emailPessoa;
         this.pessoa = pessoas;
+        this.date = date;
     }
 
     public VacinaResponseDTO toResponse(){
-        return new VacinaResponseDTO(nomeVacina, emailPessoa);
+        return new VacinaResponseDTO(nomeVacina, emailPessoa, date);
     }
 
     public Long getId() {
