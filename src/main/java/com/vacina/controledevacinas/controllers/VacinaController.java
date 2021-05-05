@@ -35,7 +35,7 @@ public class VacinaController {
     public ResponseEntity<?> cadastroPessoa(@RequestBody @Valid VacinaDTO request) {
         Vacina vacina = request.toEntity(pessoaRepository);
         vacinaRepository.save(vacina);
-        return ResponseEntity.status(HttpStatus.CREATED).body(vacina.toResponse());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/pessoa/{idPessoa}")

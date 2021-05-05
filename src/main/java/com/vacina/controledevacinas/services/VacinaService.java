@@ -20,7 +20,6 @@ public class VacinaService {
         return vacinaRepository.findByPessoaId(idPessoa);
     }
 
-
     public List<VacinaResponseDTO> listaVacinaResposeDTO(List<Vacina> vacinas) {
         return vacinas
                 .stream()

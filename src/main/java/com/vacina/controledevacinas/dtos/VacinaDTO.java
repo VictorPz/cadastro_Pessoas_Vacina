@@ -1,11 +1,9 @@
 package com.vacina.controledevacinas.dtos;
 
-import com.vacina.controledevacinas.common.UniqueValue;
 import com.vacina.controledevacinas.entities.Pessoa;
 import com.vacina.controledevacinas.entities.Vacina;
 import com.vacina.controledevacinas.repositories.PessoaRepository;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
